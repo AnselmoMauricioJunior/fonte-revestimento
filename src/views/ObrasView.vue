@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h2>HOME</h2>
+  <div class="obras">
+    <h2>OBRAS</h2>
   </div>
 </template>
 
@@ -11,5 +11,5 @@ import { Options, Vue } from 'vue-class-component';
   components: {
   },
 })
-export default class HomeView extends Vue {}
+export default class ObrasView extends Vue {}
 </script>

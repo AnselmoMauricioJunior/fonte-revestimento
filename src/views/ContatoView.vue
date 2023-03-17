@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h2>HOME</h2>
+  <div class="contato">
+    <h2>CONTATO</h2>
   </div>
 </template>
 
@@ -11,5 +11,5 @@ import { Options, Vue } from 'vue-class-component';
   components: {
   },
 })
-export default class HomeView extends Vue {}
+export default class ContatoView extends Vue {}
 </script>
