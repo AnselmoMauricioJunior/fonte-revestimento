@@ -3,13 +3,13 @@
     <div class="obra-detalhes-container">
       <h1>{{ obra.titulo }}</h1>
       <p>{{ obra.descricao }}</p>
-      <img :src="obra.foto" :alt="obra.titulo" class="obra-detalhes-imagem">
+      <img :src="getObraAtual()" :alt="obra.titulo" class="obra-detalhes-imagem">
       <div class="obra-detalhes-info">        
         <div class="obra-detalhes-fotos">
           <h2>Outras Fotos</h2>
           <ul>
-            <li v-for="(foto, index) in obra.fotos" :key="index">
-              <img :src="foto" :alt="'Foto ' + (index + 1)">
+            <li v-for="(foto, index) in getObras()" :key="index">
+              <img :src="foto" :alt="'Foto ' + (index + 1)" @click="setObraAtual(foto)">
             </li>
           </ul>
         </div>
@@ -19,20 +19,29 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Vue,prop } from 'vue-class-component';
 import { Obra } from '@/types/obra';
-import { PropType } from 'vue';
 
-@Options({
-  props: {
-    obra: {
-      type: Object as PropType<Obra>,
-      required: true,
-    },
-  },
-})
-export default class ObraDetalhes extends Vue {
+export class Props{
+  obra= prop<Obra>({required: true}) 
+}
 
+export default class ObraDetalhes extends Vue.with(Props) {
+ fotoAtual = this.obra.foto
+  
+  setObraAtual(foto:string){
+   this.fotoAtual = foto
+  }
+  getObraAtual(){
+    return this.fotoAtual
+  }
+
+  getObras(){
+   let obras = []   
+   obras.push(this.obra.foto)
+   obras =obras.concat(this.obra.fotos)
+   return obras
+ }
 }
 </script>
 
