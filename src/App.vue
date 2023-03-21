@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="classObject">
+  <div id="app">
     <Menus />
     <Corpo />
   </div>
