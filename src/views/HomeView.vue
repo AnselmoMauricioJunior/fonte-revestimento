@@ -7,7 +7,7 @@
       <div class="hero-text">
         <h1>Bem-vindo!</h1>
 
-        <p>Fonte Revestimento, uma construtora de excelência em revestimentos para a sua casa ou empreendimento. Somos especializados em oferecer soluções inovadoras e de alta qualidade para todos os tipos de projetos, desde pequenas reformas até grandes construções.</p>
+        <p>Fonte Revestimento é uma construtora de excelência em revestimentos para a sua casa ou empreendimento. Somos especializados em oferecer soluções inovadoras e de alta qualidade para todos os tipos de projetos, desde pequenas reformas até grandes construções.</p>
         
         <p>Navegue em nosso site e descubra como podemos ajudá-lo a tornar seus sonhos de revestimento em realidade. Entre em contato conosco hoje mesmo e agende uma consulta. Estamos ansiosos para trabalhar com você!</p>
       </div>
