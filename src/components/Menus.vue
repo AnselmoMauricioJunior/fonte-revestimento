@@ -5,7 +5,9 @@
   </div>
     <ul>
       <li v-for="item in menuItems" :key="item.id">
-        <router-link :to="item.link">{{ item.label }}</router-link>
+        <router-link :to="item.link">
+          <i v-bind:class="item.icon"></i>
+          {{ item.label }}</router-link>
       </li>
     </ul>
   </div>
@@ -17,29 +19,33 @@ import { Vue } from 'vue-class-component';
 export default class Corpo extends Vue {
   data() {
     return {
-      caminhoImagem: require('../../public/img/google-logo-4.png')
+      caminhoImagem: require('../../public/img/LogoFonteRevestimento.png')
     }
   }
   private menuItems = [
-    {
+      {
       id: 1,
       label: 'Home',
       link: '/',
+      icon: 'bi-house-door'
     },
     {
       id: 2,
       label: 'Obras',
       link: '/obras',
+      icon: 'bi-building'
     },
     {
       id: 3,
       label: 'Sobre',
       link: '/sobre',
+      icon: 'bi-info-circle'
     },
     {
       id: 4,
       label: 'Contato',
       link: '/contato',
+      icon: 'bi-envelope'
     },
   ];
 }
@@ -51,6 +57,7 @@ export default class Corpo extends Vue {
   transform-origin: center center;
   max-width: 100%;
   height: auto;
+  margin-bottom: 10px;
 }
 
 .imagem-div img {
@@ -71,6 +78,9 @@ export default class Corpo extends Vue {
   padding-top: 20px;
   border-right: 1px solid #ccc;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+  display: block;
+    overflow: hidden;
+    background: rgb(39, 42, 48);
 }
 
 .sidebar ul {
@@ -89,14 +99,15 @@ export default class Corpo extends Vue {
   text-decoration: none;
   display: block;
   padding: 10px 20px;
-  border: solid #ccc;
+  border: solid #605b27;
   border-radius: 5px;
   background-color: #f8f7d2;
-  color: #333;
+  color: #000;
   transition: all 0.3s ease;
   box-sizing: border-box;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   transform: perspective(100px) rotateY(3deg);
+  font-weight: bold;
 }
 
 .sidebar li a:hover {

@@ -2,11 +2,14 @@
   <div class="home">
     <div class="hero-section">
       <div class="hero-image-container">
-        <img src="../../public/img/google-logo-4.png" alt="Imagem principal da página" class="hero-image">
+        <img src="../../public/img/LogoFonteRevestimento.png" alt="Imagem principal da página" class="hero-image">
       </div>
       <div class="hero-text">
-        <h1>Bem-vindo ao meu site</h1>
-        <p>Aqui você encontrará informações sobre mim e meus trabalhos. Explore o menu a esquerda para saber mais.</p>
+        <h1>Bem-vindo!</h1>
+
+        <p>Fonte Revestimento, uma construtora de excelência em revestimentos para a sua casa ou empreendimento. Somos especializados em oferecer soluções inovadoras e de alta qualidade para todos os tipos de projetos, desde pequenas reformas até grandes construções.</p>
+        
+        <p>Navegue em nosso site e descubra como podemos ajudá-lo a tornar seus sonhos de revestimento em realidade. Entre em contato conosco hoje mesmo e agende uma consulta. Estamos ansiosos para trabalhar com você!</p>
       </div>
     </div>
   </div>
@@ -43,8 +46,8 @@ export default class HomeView extends Vue {}
   justify-content: center;
   max-height: 100%;
   max-width: 100%;
-  position: relative; /* posição ajustada */  
-  margin-top: 10%;
+  position: auto; /* posição ajustada */  
+  margin-top: 20%;
 }
 
 .hero-image {
@@ -61,7 +64,6 @@ export default class HomeView extends Vue {}
   margin-top: 50px; /* margem ajustada */
   color: black;
 }
-
 .hero-text h1 {
   font-size: 4rem;
   font-weight: bold;
@@ -69,7 +71,8 @@ export default class HomeView extends Vue {}
 }
 
 .hero-text p {
-  font-size: 1.5rem;
+  text-align: justify;
+  font-size: 1.2rem;
   line-height: 2rem;
   max-width: 800px;
 }
