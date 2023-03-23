@@ -76,6 +76,7 @@ export default class HomeView extends Vue {}
   text-align: justify;
   font-size: 1.2rem;
   line-height: 2rem;
-  max-width: 800px;
+  max-width: calc(100% - 10px);
+  color: #606060;
 }
 </style>
