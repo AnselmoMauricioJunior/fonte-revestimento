@@ -32,12 +32,15 @@ export default class HomeView extends Vue {}
 
 .hero-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: wrap;
   align-items: center;
   justify-content: center;
-  height: 50vh; /* altura ajustada */
   width: 100%;
   position: relative;
+
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero-image-container {
@@ -47,7 +50,6 @@ export default class HomeView extends Vue {}
   max-height: 100%;
   max-width: 100%;
   position: auto; /* posição ajustada */  
-  margin-top: 20%;
 }
 
 .hero-image {

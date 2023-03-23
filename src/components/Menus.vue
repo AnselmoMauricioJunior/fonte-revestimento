@@ -1,15 +1,21 @@
 <template>
-  <div class="sidebar">
-  <div class="imagem-div">
-    <img v-bind:src="caminhoImagem" alt="Minha imagem">
-  </div>
+  <div class="sidebar" :class="{ 'collapsed': isCollapsed }">
+    <div class="btn-collapse">
+    <button class="btn btn-primary btn-sm toggle-btn toggle-btn-custom ml-auto" @click="isCollapsed = !isCollapsed">
+      <i v-bind:class="[isCollapsed ? 'bi-list' : 'bi-list-nested']"></i>
+    </button>
+    </div>
+    <div class="imagem-div">
+      <img v-bind:src="isCollapsed ? caminhoImagemLogoReduzida : caminhoImagem" alt="Minha imagem">
+    </div>
     <ul>
       <li v-for="item in menuItems" :key="item.id">
         <router-link :to="item.link">
           <i v-bind:class="item.icon"></i>
-          {{ item.label }}</router-link>
+          <span v-if="!isCollapsed">{{ item.label }}</span>
+          </router-link>
       </li>
-    </ul>
+    </ul>    
   </div>
 </template>
 
@@ -19,7 +25,9 @@ import { Vue } from 'vue-class-component';
 export default class Corpo extends Vue {
   data() {
     return {
-      caminhoImagem: require('../../public/img/LogoFonteRevestimento.png')
+      isCollapsed:false,
+      caminhoImagem: require('../../public/img/LogoFonteRevestimento.png'),
+      caminhoImagemLogoReduzida: require('../../public/img/LogoFonteRevestimento - FR.png')
     }
   }
   private menuItems = [
@@ -52,22 +60,37 @@ export default class Corpo extends Vue {
 </script>
 
 <style scoped>
-.imagem-div img {
-  transition: transform 0.3s ease;
-  transform-origin: center center;
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
+.toggle-btn-custom {
+  background-color:rgb(39, 42, 48); /* Substitua pela cor desejada */
+}
+
+.toggle-btn-custom:hover {
+  background-color:#f44336; /* Substitua pela cor desejada */
+}
+
+.sidebar .toggle-btn {
+  margin-left: auto;
+}
+
+.btn-collapse{
+  margin-top: -5%;
+  margin-bottom: 5%;
 }
 
 .imagem-div img {
-  transition: transform 0.3s ease;
-  transform-origin: center center;
-}
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+     background-color: #d1caca;
+    background-image: linear-gradient(to bottom, #272a30, transparent,#272a30);
+  }
 
-.imagem-div:hover img {
+.imagem-div img:hover {
   transform: rotateY(20deg) rotateX(20deg) rotateZ(5deg);
 }
+
 .sidebar {
   background-color: #f1f1f1;
   height: 100%;
@@ -79,8 +102,13 @@ export default class Corpo extends Vue {
   border-right: 1px solid #ccc;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
   display: block;
-    overflow: hidden;
-    background: rgb(39, 42, 48);
+  overflow: hidden;
+  background: rgb(39, 42, 48);
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px;
 }
 
 .sidebar ul {
@@ -93,22 +121,25 @@ export default class Corpo extends Vue {
   padding: 0;
   margin: 0;
 }
-
+.sidebar li a span {
+  padding-left: 3%;
+}
 .sidebar li a {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
   display: block;
   padding: 10px 20px;
-  border: solid #605b27;
-  border-radius: 5px;
-  background-color: #f8f7d2;
-  color: #000;
+  border: solid #0d6efd 1px;
+  border-radius: 1px;
+  background-color: #272a30;
+  color: #fffefe;
   transition: all 0.3s ease;
   box-sizing: border-box;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   transform: perspective(100px) rotateY(3deg);
   font-weight: bold;
 }
+
 
 .sidebar li a:hover {
   background-color: #f44336;
