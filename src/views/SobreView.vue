@@ -39,7 +39,6 @@ export default class SobreView extends Vue {}
 .about-page p {
   text-align: justify;
   max-width: calc(100% - 300px);
-  margin-right: 100px;
   color: #606060;
   font-size: 1.2rem;
   line-height: 2rem;

@@ -5,45 +5,49 @@
         <i class="bi bi-geo-alt"></i>
         <div class="contact-details">
           <h4>Endereço</h4>
-          <p>Rua Exemplo, 123 - Bairro</p>
-          <p>Cidade - Estado - CEP</p>
+          <p>Rua 6, 103 - Rosa Elze</p>
+          <p>São Cristovão - Sergipe - 49100-000</p>
         </div>
       </div>
       <div class="contact-item">
         <i class="bi bi-telephone"></i>
         <div class="contact-details">
           <h4>Telefone</h4>
-          <p>(11) 1234-5678</p>
-          <p>(11) 9876-5432</p>
+          <p>(79) 3257-2644</p>
+          <p>(79) 99968-2601</p>
         </div>
       </div>
       <div class="contact-item">
         <i class="bi bi-envelope"></i>
         <div class="contact-details">
-          <h4>E-mail</h4>
-          <p>contato@exemplo.com</p>
-          <p>suporte@exemplo.com</p>
+          <h4>E-mail</h4>          
+          <p>fonterevestimento@gmail.com</p>
+          <p>anselmopintor@hotmail.com</p>
         </div>
       </div>
     </div>
     <div class="contact-form">
       <h3>Entre em contato conosco</h3>
-      <form @submit.prevent="enviarMensagem">
+     <form @submit.prevent="submitForm" :class="{ 'is-loading': isLoading }">
         <div class="form-group">
-          <input type="text" id="name" placeholder="Entre com seu nome">
+          <input type="text" id="name" name="name" maxlength="50" placeholder="Entre com seu nome" v-model="name" required :disabled="isLoading">
         </div>
         <div class="form-group">
-          <input type="email" id="email" placeholder="Entre com seu endereço de e-mail">
+          <input type="email" id="email" name="email" maxlength="50" placeholder="Entre com seu endereço de e-mail" v-model="email" required :disabled="isLoading">
         </div>
         <div class="form-group">
-          <textarea id="message" rows="5"></textarea>
+          <textarea id="message" name="message" rows="5" maxlength="1000" v-model="message" @input="updateMessageLength" required :disabled="isLoading"></textarea>
+          <p class="caracteres-restante">{{ messageLength }}</p>
         </div>
-        <button type="submit">Enviar</button>
-      </form>
+        <button type="submit" :disabled="isLoading">         
+          <span v-if="!isLoading" class="loading-message">Enviar</span> 
+          <span v-if="isLoading" class="loading-message">Enviando...</span>
+        </button>
+          <input type="hidden" id="_captcha" name="_captcha" value="false">
+       </form>
     </div>
   </div>
 </template>
-
 <script>
 import { Options, Vue } from 'vue-class-component';
 import axios from 'axios';
@@ -52,29 +56,51 @@ import axios from 'axios';
   components: {
   },
 })
+
+
 export default class ContatoView extends Vue {
-nome = '';
+  name = '';
   email = '';
-  mensagem = '';
+  message = '';
+  messageLength = 1000;
+  isLoading = false; // adiciona a variável de controle
 
-  enviarMensagem() {
-    const dados = {
-      nome: this.nome,
-      email: this.email,
-      mensagem: this.mensagem,
-    };
-
-    axios.post('/url-do-seu-servidor', dados)
-      .then((resposta) => {
-        console.log('Mensagem enviada:', resposta.data);
-        // Ou exiba uma mensagem de sucesso para o usuário
-      })
-      .catch((erro) => {
-        console.error('Erro ao enviar mensagem:', erro);
-        // Ou exiba uma mensagem de erro para o usuário
-      });
+  updateMessageLength() {
+    this.messageLength = 1000 - this.message.length;
   }
 
+
+  async submitForm() {
+    const formData = {
+      name: this.name,
+      email: this.email,
+      message: this.message,
+      _captcha:false,
+    };
+    try {
+      this.isLoading = true; // seta isLoading como true para desabilitar o formulário
+      const response = await fetch('https://formsubmit.co/ajax/anselmo.mauricio.jr@gmail.com', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      });
+      const resposta = await response;
+
+      if(resposta.status != 200)
+        throw resposta.statusText+' '+resposta.status;
+
+      console.log(resposta.statusText+' '+resposta.status);
+      alert('Formulário enviado com sucesso!');
+    } catch (error) {
+      console.error(error);
+      alert('Ocorreu um erro ao enviar o formulário!');
+    } finally {
+      this.isLoading = false; // seta isLoading como false para habilitar o formulário novamente
+    }
+  }
 }
 </script>
 
@@ -83,6 +109,7 @@ nome = '';
   display: flex;
   flex-direction: column;
   align-items: center;  
+  
 }
 
 .contact-info {
@@ -100,6 +127,8 @@ nome = '';
   border-radius: 5px;
   padding: 10px;
   width: 30%;
+  box-shadow: 20px 10px rgb(170, 170, 170);
+  background-image: linear-gradient(to bottom, #cdcdcd, #ffffff,#cfc8c9);
 }
 
 .contact-item i {
@@ -111,7 +140,9 @@ nome = '';
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
-  width: 60%;
+  width: 50%;
+  box-shadow: 10px 10px rgb(219, 219, 219);
+  background-image: linear-gradient(to bottom, #e9f8ff, #ffffff,#ecf5f9);
 }
 
 .contact-form h3 {
@@ -140,7 +171,7 @@ nome = '';
 }
 
 .form-group textarea {
-  min-height: 100px;
+  min-height: 200px;
 }
 
 button[type="submit"] {
@@ -152,6 +183,10 @@ button[type="submit"] {
   font-size: 16px;
   font-weight: bold;
   padding: 10px 20px;
+}
+
+.caracteres-restante{
+  text-align: right;
 }
 
 </style>

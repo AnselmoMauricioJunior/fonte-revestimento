@@ -11,7 +11,7 @@ export default class Corpo extends Vue {}
 </script>
 
 <style>
-.corpo {
-  margin-left: 200px;
+.corpo {  
+  margin-left: 10%;
 }
 </style>
