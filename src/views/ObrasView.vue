@@ -21,6 +21,7 @@
 import { Options, Vue } from 'vue-class-component';
 import { Obra } from '@/types/obra'; // importe o tipo de dados das obras, com as informações como id, foto e título
 import ObraDetalhes from '../components/ObraDetalhes.vue'
+import obrasService from '@/services/obrasService'
 
 @Options({
   components: {
@@ -28,100 +29,12 @@ import ObraDetalhes from '../components/ObraDetalhes.vue'
       },
 })
 export default class ObrasView extends Vue {
-  obras:  Obra[] = [
-    {
-      id: 1,
-      titulo: 'Mona Lisa',
-      descricao: 'Pintura a óleo de Leonardo da Vinci',
-      foto: require('../../public/img/mona-lisa.jpg'),
-      fotos: [
-        require('../../public/img/mona-lisa.jpg'),
-        require('../../public/img/mona-lisa.jpg'),
-        require('../../public/img/mona-lisa.jpg'),
-      ],
-    },
-    {
-      id: 2,
-      titulo: 'A noite estrelada',
-      descricao: 'Pintura a óleo de Vincent van Gogh',
-      foto: require('../../public/img/a-noite-estrelada.jpg'),
-      fotos: [
-        require('../../public/img/a-noite-estrelada.jpg'),
-        require('../../public/img/a-noite-estrelada.jpg'),
-        require('../../public/img/a-noite-estrelada.jpg'),
-      ],
-    },
-    {
-      id: 3,
-      titulo: 'O Grito',
-      descricao: 'Pintura a óleo de Edvard Munch',
-      foto: require('../../public/img/o-grito.jpg'),
-      fotos: [
-        require('../../public/img/o-grito.jpg'),
-        require('../../public/img/a-noite-estrelada.jpg'),
-        require('../../public/img/o-grito.jpg'),
-        
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/o-grito.jpg'),
-        
-        require('../../public/img/guernica.jpg'),
-        
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        
-        require('../../public/img/o-grito.jpg'),
-        
-        require('../../public/img/guernica.jpg'),
-        
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/guernica.jpg'),
-        
-        require('../../public/img/guernica.jpg'),
-        
-        require('../../public/img/o-grito.jpg'),
-        
-        require('../../public/img/guernica.jpg'),
-        
-        require('../../public/img/os-girassois.jpg'),
-      ],
-    },
-    {
-      id: 4,
-      titulo: 'Os Girassóis',
-      descricao: 'Pintura a óleo de Vincent van Gogh',
-      foto: require('../../public/img/os-girassois.jpg'),
-      fotos: [
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/os-girassois.jpg'),
-        require('../../public/img/os-girassois.jpg'),
-      ],
-    },
-    {
-      id: 5,
-      titulo: 'Guernica',
-      descricao: 'Pintura a óleo de Pablo Picasso',
-      foto: require('../../public/img/guernica.jpg'),
-      fotos: [
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-        require('../../public/img/guernica.jpg'),
-      ],
-    },
-  ];
    obraSelecionada: Obra | null = null;
+   obras: Obra[] = [];
 
+  async created() {
+    this.obras = await obrasService.getObras();
+  }
   selecionarObra(obra: Obra) {
      this.obraSelecionada = obra;
   }
@@ -140,27 +53,37 @@ export default class ObrasView extends Vue {
 .obras-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .obra {
-  width: 48%;
+  width: 31%;
   margin-bottom: 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem; /* Definir um espaço para evitar que a imagem seja cortada na margem superior */
+  margin-right: 1%;
+  margin-top: 1%; 
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.obra:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  transform:  scale(1.1)
 }
 
 .obra-foto {
   width: 100%;
-  height: 300px;
+  height: 200px;
   object-fit: cover;
-  border: 1px solid black;
 }
 
 .obra-titulo {
   text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding: 5px;
 }
 
 .modal {
@@ -174,7 +97,7 @@ export default class ObrasView extends Vue {
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow-y: hidden; /* habilita a barra de rolagem vertical */
+  overflow-y: hidden; 
 }
 
 .fotos-relacionadas {
@@ -183,11 +106,11 @@ export default class ObrasView extends Vue {
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
-  margin-top: 1rem; /* adiciona uma margem superior para evitar que o botão fique coberto */
+  margin-top: 1rem; 
   margin-bottom: 3rem;
-  padding: 1rem; /* adiciona um espaçamento interno */
-  box-sizing: border-box; /* inclui o preenchimento interno no cálculo da largura e altura */
-  overflow: auto; /* habilita a barra de rolagem quando necessário */
+  padding: 1rem; 
+  box-sizing: border-box; 
+  overflow: auto; 
 }
 
 .fotos-relacionadas button {
@@ -209,6 +132,7 @@ export default class ObrasView extends Vue {
 .fotos-relacionadas button:hover {
   background-color: #c9302c;
 }
+
 .obra-detalhes {
   max-height: 100vh;
 }

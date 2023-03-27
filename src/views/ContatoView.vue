@@ -50,7 +50,7 @@
 </template>
 <script>
 import { Options, Vue } from 'vue-class-component';
-import axios from 'axios';
+import formSubmitService from '@/services/formSubmitService';
 
 @Options({
   components: {
@@ -63,43 +63,20 @@ export default class ContatoView extends Vue {
   email = '';
   message = '';
   messageLength = 1000;
-  isLoading = false; // adiciona a variável de controle
+  isLoading = false; 
 
   updateMessageLength() {
     this.messageLength = 1000 - this.message.length;
   }
 
+  async submitForm() {   
+    this.isLoading = true;
+    await formSubmitService.enviarEmail(this.name,
+                                  this.email,
+                                  this.message,
+                                  );
 
-  async submitForm() {
-    const formData = {
-      name: this.name,
-      email: this.email,
-      message: this.message,
-      _captcha:false,
-    };
-    try {
-      this.isLoading = true; // seta isLoading como true para desabilitar o formulário
-      const response = await fetch('https://formsubmit.co/ajax/anselmo.mauricio.jr@gmail.com', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-      });
-      const resposta = await response;
-
-      if(resposta.status != 200)
-        throw resposta.statusText+' '+resposta.status;
-
-      console.log(resposta.statusText+' '+resposta.status);
-      alert('Formulário enviado com sucesso!');
-    } catch (error) {
-      console.error(error);
-      alert('Ocorreu um erro ao enviar o formulário!');
-    } finally {
-      this.isLoading = false; // seta isLoading como false para habilitar o formulário novamente
-    }
+    this.isLoading = false;
   }
 }
 </script>
