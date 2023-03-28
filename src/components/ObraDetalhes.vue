@@ -3,45 +3,51 @@
     <div class="obra-detalhes-container">
       <h1>{{ obra.titulo }}</h1>
       <p>{{ obra.descricao }}</p>
-      <img :src="getObraAtual()" :alt="obra.titulo" class="obra-detalhes-imagem">
-      <div class="obra-detalhes-info">        
-        <div class="obra-detalhes-fotos">
-          <h2>Outras Fotos</h2>
-          <ul>
-            <li v-for="(foto, index) in getObras()" :key="index">
-              <img :src="foto" :alt="'Foto ' + (index + 1)" @click="setObraAtual(foto)">
-            </li>
-          </ul>
-        </div>
+      <div class="foto-container">
+        <button @click="anteriorFoto" :disabled="fotoIndex === 0" class="btn btn-light">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <img :src="getObraAtual()" :alt="obra.titulo" class="obra-detalhes-imagem">
+        <button @click="proximaFoto" :disabled="fotoIndex === getObras().length - 1" class="btn btn-light">
+          <i class="bi bi-chevron-right"></i>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue,prop } from 'vue-class-component';
+import { Vue, prop } from 'vue-class-component';
 import { Obra } from '@/types/obra';
 
-export class Props{
-  obra= prop<Obra>({required: true}) 
+export class Props {
+  obra = prop<Obra>({ required: true });
 }
 
 export default class ObraDetalhes extends Vue.with(Props) {
- fotoAtual = this.obra.foto
-  
-  setObraAtual(foto:string){
-   this.fotoAtual = foto
-  }
-  getObraAtual(){
-    return this.fotoAtual
+   fotoIndex = 0;
+
+  getObraAtual() {
+    return this.getObras()[this.fotoIndex];
   }
 
-  getObras(){
-   let obras = []   
-   obras.push(this.obra.foto)
-   obras =obras.concat(this.obra.fotos)
-   return obras
- }
+  getObras() {
+    let obras = [];
+    obras.push(this.obra.foto);
+    obras = obras.concat(this.obra.fotos);
+    return obras;
+  }
+
+  proximaFoto() {
+    if (this.fotoIndex < this.getObras().length - 1) {
+      this.fotoIndex++;
+    }
+  }
+  anteriorFoto() {
+    if (this.fotoIndex > 0) {
+      this.fotoIndex--;
+    }
+  }
 }
 </script>
 
@@ -59,6 +65,21 @@ export default class ObraDetalhes extends Vue.with(Props) {
   margin: 50px;
 }
 
+.obra-detalhes-container p {
+  color: #000;
+}
+.obra-detalhes-container h1 {
+  color: #000;
+}
+
+
+.foto-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .obra-detalhes-imagem {
   max-width: 100%;
   max-height: 300px;
@@ -66,58 +87,13 @@ export default class ObraDetalhes extends Vue.with(Props) {
   border: 5px solid black;
 }
 
-.obra-detalhes-info {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.obra-detalhes-info h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.obra-detalhes-info p {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  max-width: 600px;
-}
-
-.obra-detalhes-fotos {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.obra-detalhes-fotos h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.obra-detalhes-fotos ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.obra-detalhes-fotos li {
-  margin: 10px;
-  flex-basis: calc(33.33% - 20px); /* Largura base para cada item */
-}
-
-.obra-detalhes-fotos li img {
-  max-width: 200px;
-  max-height: 200px;
-  object-fit: contain;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.obra-detalhes-fotos li img:hover {
-  transform: scale(1.1);
+.btn-light[data-v-2c537f6a] {
+    --bs-btn-color: #f7f7f7;
+    --bs-btn-bg: #000000;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #e52727;
+    --bs-btn-active-color: #000;
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #a3a3a3;
 }
 </style>

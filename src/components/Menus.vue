@@ -61,7 +61,7 @@ export default class Corpo extends Vue {
 
 <style scoped>
 .toggle-btn-custom {
-  background-color:rgb(39, 42, 48); /* Substitua pela cor desejada */
+  background-color:rgb(0, 0, 0); /* Substitua pela cor desejada */
 }
 
 .toggle-btn-custom:hover {
@@ -84,7 +84,7 @@ export default class Corpo extends Vue {
     height: auto;
     margin-bottom: 10px;
      background-color: #d1caca;
-    background-image: linear-gradient(to bottom, #272a30, transparent,#272a30);
+    background-image: linear-gradient(to bottom, #000000, transparent,#000000);
   }
 
 .imagem-div img:hover {
@@ -103,7 +103,7 @@ export default class Corpo extends Vue {
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
   display: block;
   overflow: hidden;
-  background: rgb(39, 42, 48);
+  background: rgb(0, 0, 0);
   transition: width 0.3s ease;
 }
 
@@ -131,7 +131,7 @@ export default class Corpo extends Vue {
   padding: 10px 20px;
   border: solid #0d6efd 1px;
   border-radius: 1px;
-  background-color: #272a30;
+  background-color: #000000;
   color: #fffefe;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -143,7 +143,7 @@ export default class Corpo extends Vue {
 
 .sidebar li a:hover {
   background-color: #f44336;
-  color: #fff;
+  color: rgb(244, 247, 101);
   border-color: #f44336;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   transform: perspective(100px) rotateY(10deg);
