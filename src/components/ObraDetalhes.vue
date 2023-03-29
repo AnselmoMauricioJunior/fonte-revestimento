@@ -90,7 +90,7 @@ text-justify: inter-word;
   border: 5px solid black;
 }
 
-.btn-light[data-v-2c537f6a] {
+.btn-light{
     --bs-btn-color: #f7f7f7;
     --bs-btn-bg: #000000;
     --bs-btn-hover-color: #fff;
