@@ -10,8 +10,9 @@
         <img :src="getObraAtual()" :alt="obra.titulo" class="obra-detalhes-imagem">
         <button @click="proximaFoto" :disabled="fotoIndex === getObras().length - 1" class="btn btn-light">
           <i class="bi bi-chevron-right"></i>
-        </button>
+        </button>        
       </div>
+      <span>{{fotoIndex+1}} - {{getObras().length}}</span>
     </div>
   </div>
 </template>
@@ -67,6 +68,8 @@ export default class ObraDetalhes extends Vue.with(Props) {
 
 .obra-detalhes-container p {
   color: #000;
+  text-align: justify;
+text-justify: inter-word;
 }
 .obra-detalhes-container h1 {
   color: #000;
@@ -82,7 +85,7 @@ export default class ObraDetalhes extends Vue.with(Props) {
 
 .obra-detalhes-imagem {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 350px;
   object-fit: contain;
   border: 5px solid black;
 }

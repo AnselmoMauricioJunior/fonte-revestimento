@@ -57,7 +57,7 @@ const obras:  Obra[] = [
     {
       id: 5,
       titulo: 'Congresso Nacional',
-      descricao: 'o Congresso Nacional é a casa da Câmara e do Senado em Brasília e foi projetado por Oscar Niemeyer em parceria com o engenheiro pernambucano Joaquim Cardoso. A edificação, chamada oficialmente de Palácio Nereu Ramos, foi inaugurada junto com Brasília e é um dos símbolos da capital federal por conta da sua peculiar aparência, com duas cúpulas contrastantes entre as torres centrais.',
+      descricao: 'O Congresso Nacional é a casa da Câmara e do Senado em Brasília e foi projetado por Oscar Niemeyer em parceria com o engenheiro pernambucano Joaquim Cardoso. A edificação, chamada oficialmente de Palácio Nereu Ramos, foi inaugurada junto com Brasília e é um dos símbolos da capital federal por conta da sua peculiar aparência, com duas cúpulas contrastantes entre as torres centrais.',
       foto: require('../../public/img/obras-predios/congresso-nacional.jpg'),
       fotos: [
         require('../../public/img/obras-predios/congresso-nacional2.jpg'),
@@ -69,7 +69,7 @@ const obras:  Obra[] = [
     {
         id: 6,
         titulo: 'Palácio do Planalto',
-        descricao: 'o Palácio do Planalto, lar do gabinete oficial do Presidente em exercício. Situado na Praça dos Três Poderes, ao lado do Congresso e do STF, projetados por Oscar Niemeyer, o Palácio do Planalto emana ares de modernidade graças ao seu arrojado projeto arquitetônico. O charme, é claro, está nas colunas do prédio, que segundo o próprio Niemeyer, conseguiram dar um efeito leve, como penas pousando no chão.',
+        descricao: 'O Palácio do Planalto, lar do gabinete oficial do Presidente em exercício. Situado na Praça dos Três Poderes, ao lado do Congresso e do STF, projetados por Oscar Niemeyer, o Palácio do Planalto emana ares de modernidade graças ao seu arrojado projeto arquitetônico. O charme, é claro, está nas colunas do prédio, que segundo o próprio Niemeyer, conseguiram dar um efeito leve, como penas pousando no chão.',
         foto: require('../../public/img/obras-predios/palacio-planalto.jpg'),
         fotos: [
           require('../../public/img/obras-predios/palacio-planalto.jpg'),
