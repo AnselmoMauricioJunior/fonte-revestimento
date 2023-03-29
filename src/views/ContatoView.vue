@@ -93,7 +93,7 @@ export default class ContatoView extends Vue {
   display: flex;
   justify-content: space-between;
   width: 70%;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .contact-item {
@@ -110,7 +110,7 @@ export default class ContatoView extends Vue {
 
 .contact-item i {
   font-size: 36px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .contact-form {
@@ -123,17 +123,17 @@ export default class ContatoView extends Vue {
 }
 
 .contact-form h3 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
-  margin-bottom: 5px;
+  margin-bottom: 1px;
 }
 
 .form-group input,
@@ -148,7 +148,7 @@ export default class ContatoView extends Vue {
 }
 
 .form-group textarea {
-  min-height: 200px;
+  min-height: 150px;
 }
 
 button[type="submit"] {
