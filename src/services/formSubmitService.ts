@@ -21,10 +21,10 @@ const enviarEmail = async (name:string,email:string,message:string)=> {
         throw resposta.statusText+' '+resposta.status;
 
       console.log(resposta);
-      alert('Formulário enviado com sucesso!');
+      alert('Mensagem enviada com sucesso!');
     } catch (error) {
       console.error(error);
-      alert('Ocorreu um erro ao enviar o formulário!');
+      alert('Ocorreu um erro ao enviar a mensagem!');
     }
 }
 
