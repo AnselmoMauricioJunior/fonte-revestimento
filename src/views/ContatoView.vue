@@ -28,7 +28,7 @@
     </div>
     <div class="contact-form">
       <h3>Entre em contato conosco</h3>
-     <form @submit.prevent="submitForm" :class="{ 'is-loading': isLoading }" netlify>
+     <form @submit.prevent="submitForm" :class="{ 'is-loading': isLoading }">
         <div class="form-group">
           <input type="text" id="name" name="name" maxlength="50" placeholder="Entre com seu nome" v-model="name" required :disabled="isLoading">
         </div>
