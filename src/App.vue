@@ -1,9 +1,14 @@
 <template>
   <div id="app">
-    <div class="container">
-      <Menus />
+    <Menus />
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-2">
+          <!-- O menu lateral deve ficar dentro de uma coluna com tamanho 2 -->
+          <Menus />
+        </div>
+        <div class="col-md-10">
+          <!-- O corpo do conteúdo deve ficar dentro de uma coluna com tamanho 10 -->
           <Corpo />
         </div>
       </div>
@@ -46,5 +51,11 @@ nav {
     }
   }
 }
-</style>
+.col-md-2{
+  width: 20%;
+}
 
+.col-md-10 {
+  width: 80%;
+}
+</style>

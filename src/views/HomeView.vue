@@ -1,21 +1,23 @@
 <template>
   <div class="home">
-    <div class="hero-section">
-      <div class="hero-image-container">
-        <img src="../../public/img/LogoFonteRevestimento.png" alt="Imagem principal da página" class="hero-image">
-        
-      </div>
-      
-      <div class="hero-text">        
-        <hr class="hero-divider">
-        <h1>Bem-vindo!</h1>
-        <p>Fonte Revestimentos é uma construtora de excelência em revestimentos para a sua casa ou empreendimento. Somos especializados em oferecer soluções inovadoras e de alta qualidade para todos os tipos de projetos, desde pequenas reformas até grandes construções.</p>
-        
-        <p>Navegue em nosso site e descubra como podemos ajudá-lo a tornar seus sonhos de revestimento em realidade. Entre em contato conosco hoje mesmo e agende uma consulta. Estamos ansiosos para trabalhar com você!</p>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="hero-section container">
+          <div class="hero-image-container">
+            <img src="../../public/img/LogoFonteRevestimento.png" alt="Imagem principal da página" class="hero-image">
+          </div>
+          <div class="hero-text">        
+            <hr class="hero-divider">
+            <h1>Bem-vindo!</h1>
+            <p>Fonte Revestimentos é uma construtora de excelência em revestimentos para a sua casa ou empreendimento. Somos especializados em oferecer soluções inovadoras e de alta qualidade para todos os tipos de projetos, desde pequenas reformas até grandes construções.</p>      
+            <p>Navegue em nosso site e descubra como podemos ajudá-lo a tornar seus sonhos de revestimento em realidade. Entre em contato conosco hoje mesmo e agende uma consulta. Estamos ansiosos para trabalhar com você!</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 
@@ -25,6 +27,7 @@ import { Options, Vue } from 'vue-class-component';
 })
 export default class HomeView extends Vue {}
 </script>
+
 <style scoped>
 .home {
   display: flex;
@@ -39,7 +42,6 @@ export default class HomeView extends Vue {}
   justify-content: center;
   width: 100%;
   position: relative;
-
   flex-wrap: wrap;
   max-width: 800px;
   margin: 0 auto;
@@ -61,7 +63,6 @@ export default class HomeView extends Vue {}
 }
 
 .hero-text {
-  position: relative;
   z-index: 1;
   max-width: 800px;
   text-align: center;
