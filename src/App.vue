@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <Menus />
-    <Corpo />
+    <div class="container">
+      <Menus />
+      <div class="row">
+        <div class="col-md-12">
+          <Corpo />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,6 +35,7 @@ export default ({
 
 nav {
   padding: 30px;
+  background-color: #f8f9fa;
 
   a {
     font-weight: bold;
